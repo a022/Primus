@@ -27,14 +27,21 @@
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
 			<?php
-			the_custom_logo();
-			if ( is_front_page() && is_home() ) : ?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<?php else : ?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+				if ( has_custom_logo() ):
+					$image = wp_get_attachment_image_src( get_theme_mod( 'custom_logo' ), 'full' );
+			?>
+					<a href="<?php echo get_bloginfo('home');?>" class="logo">
+						<img alt="<?php echo get_bloginfo('description');?>" height="<?php echo absint( $image[2] );?>" width="<?php echo absint( $image[1] );?>" src="<?php echo esc_url( $image[0] );?>" >
+					</a>
 			<?php
-			endif;
-
+				endif;
+			?>
+			
+			<h1 class="site-title">
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a>
+			</h1>
+			
+			<?php
 			$description = get_bloginfo( 'description', 'display' );
 			if ( $description || is_customize_preview() ) : ?>
 				<p class="site-description"><?php echo $description; /* WPCS: xss ok. */ ?></p>

@@ -73,17 +73,6 @@ if ( ! function_exists( 'primus_setup' ) ) :
 endif;
 add_action( 'after_setup_theme', 'primus_setup' );
 
-/**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- */
-function primus_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'primus_content_width', 640 );
-}
-add_action( 'after_setup_theme', 'primus_content_width', 0 );
 
 /**
  * Register widget area.
@@ -109,7 +98,7 @@ add_action( 'widgets_init', 'primus_widgets_init' );
 function primus_scripts() {
 	wp_enqueue_style( 'primus-style', get_stylesheet_uri() );
 
-	wp_enqueue_script( 'primus-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+	wp_enqueue_script( 'primus-skip-link-focus-fix', get_template_directory_uri() . '/js/default/skip-link-focus-fix.js', array(), '20151215', true );
 }
 add_action( 'wp_enqueue_scripts', 'primus_scripts' );
 
